@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- <div onmouseover="mOver(this)" onmouseout="mOut(this)" style="background-color: red;">
+        Mouse OVer me
+    </div> -->
+    <div onmousedown="mDown(this)" onmouseup="mUp(this)" style="background-color: red;">
+        Mouse OVer me
+    </div>
+    <h1 onclick="changetext(this)"> Click me</h1>
+    <button onclick="showdate()">Click Me!</button>
+    <p id="demo"></p>
+   
+        <input type="text" id="firstname" onchange="Uppercase()">
+   
+    <script>
+        function changetext(id){
+            id.innerHTML="Hi u are clicked! ";
+        }
+        function showdate(){
+            document.getElementById("demo").innerHTML=new Date();
+        }
+        function Uppercase(){
+            const x=document.getElementById("firstname");
+            x.value=x.value.toUpperCase();
+        }
+        function mOver(obj){
+            obj.innerHTML="Mouse over me";
+        }
+        function mOut(obj){
+            obj.innerHTML="Thanks";
+        }
+        function mDown(obj){
+            obj.style.backgroundColor="green";
+            obj.innerHTML="Release Me!";
+        }
+        function mUp(obj){
+            obj.style.backgroundColor="yellow";
+            obj.innerHTML="uellow";
+        }
+
+    </script>
+</body>
+</html>
