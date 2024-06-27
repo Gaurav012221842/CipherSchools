@@ -1,0 +1,175 @@
+Create the following components:
+App: The main component that holds the state and renders the other components.
+Header: A simple component that displays the title of the app.
+TaskList: A component that takes a list of tasks as a prop and renders each task.
+TaskItem: A component that renders individual task details and provides buttons for marking as completed and deleting.
+AddTask: A component with an input field and a button to add new tasks.
+Implement the Components:
+
+App.js:
+
+jsx
+Copy code
+import React, { useState } from 'react';
+import Header from './Header';
+import TaskList from './TaskList';
+import AddTask from './AddTask';
+
+function App() {
+  const [tasks, setTasks] = useState([
+    { id: 1, text: 'Learn React', completed: false },
+    { id: 2, text: 'Build a ToDo App', completed: false },
+  ]);
+
+  const addTask = (task) => {
+    setTasks([...tasks, { id: tasks.length + 1, text: task, completed: false }]);
+  };
+
+  const deleteTask = (id) => {
+    setTasks(tasks.filter(task => task.id !== id));
+  };
+
+  const toggleTaskCompletion = (id) => {
+    setTasks(tasks.map(task =>
+      task.id === id ? { ...task, completed: !task.completed } : task
+    ));
+  };
+
+  return (
+    <div className="App">
+      <Header title="ToDo List" />
+      <AddTask addTask={addTask} />
+      <TaskList tasks={tasks} deleteTask={deleteTask} toggleTaskCompletion={toggleTaskCompletion} />
+    </div>
+  );
+}
+
+export default App;
+Header.js:
+
+jsx
+Copy code
+import React from 'react';
+
+function Header({ title }) {
+  return (
+    <header>
+      <h1>{title}</h1>
+    </header>
+  );
+}
+
+export default Header;
+TaskList.js:
+
+jsx
+Copy code
+import React from 'react';
+import TaskItem from './TaskItem';
+
+function TaskList({ tasks, deleteTask, toggleTaskCompletion }) {
+  return (
+    <ul>
+      {tasks.map(task => (
+        <TaskItem
+          key={task.id}
+          task={task}
+          deleteTask={deleteTask}
+          toggleTaskCompletion={toggleTaskCompletion}
+        />
+      ))}
+    </ul>
+  );
+}
+
+export default TaskList;
+TaskItem.js:
+
+jsx
+Copy code
+import React from 'react';
+
+function TaskItem({ task, deleteTask, toggleTaskCompletion }) {
+  return (
+    <li style={{ textDecoration: task.completed ? 'line-through' : 'none' }}>
+      {task.text}
+      <button onClick={() => toggleTaskCompletion(task.id)}>
+        {task.completed ? 'Undo' : 'Complete'}
+      </button>
+      <button onClick={() => deleteTask(task.id)}>Delete</button>
+    </li>
+  );
+}
+
+export default TaskItem;
+AddTask.js:
+
+jsx
+Copy code
+import React, { useState } from 'react';
+
+function AddTask({ addTask }) {
+  const [task, setTask] = useState('');
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (task.trim()) {
+      addTask(task);
+      setTask('');
+    }
+  };
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <input
+        type="text"
+        value={task}
+        onChange={(e) => setTask(e.target.value)}
+        placeholder="Add a new task"
+      />
+      <button type="submit">Add Task</button>
+    </form>
+  );
+}
+
+export default AddTask;
+Style the Components:
+
+Add some basic styles to make the application look better.
+You can use inline styles, CSS modules, or a CSS file.
+App.css:
+
+css
+Copy code
+.App {
+  text-align: center;
+  margin: 20px;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  margin: 10px 0;
+}
+
+button {
+  margin-left: 10px;
+}
+
+input {
+  margin-right: 10px;
+}
+Run Your Application:
+
+Start the development server:
+sh
+Copy code
+npm start
+Open http://localhost:3000 to view your app in the browser.
+Bonus:
+
+Add validation to prevent adding empty tasks.
+Implement a filter to show all, completed, or pending tasks.
