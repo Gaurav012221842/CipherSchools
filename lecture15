@@ -1,0 +1,33 @@
+my-app/
+├── public/
+│   ├── index.html
+│   ├── favicon.ico
+│   └── ...
+├── src/
+│   ├── assets/
+│   │   ├── images/
+│   │   ├── styles/
+│   │   └── ...
+│   ├── components/
+│   │   ├── Header.js
+│   │   ├── Footer.js
+│   │   ├── ...
+│   ├── pages/
+│   │   ├── Home.js
+│   │   ├── About.js
+│   │   ├── ...
+│   ├── services/
+│   │   ├── api.js
+│   │   ├── auth.js
+│   │   └── ...
+│   ├── utils/
+│   │   ├── helpers.js
+│   │   ├── constants.js
+│   │   └── ...
+│   ├── App.js
+│   ├── index.js
+│   └── ...
+├── package.json
+├── README.md
+└── ...
+
