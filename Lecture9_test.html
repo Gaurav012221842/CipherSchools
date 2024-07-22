@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="./test.css" />
+        <title>Pagee Title</title>
+    </head>
+    <body>
+        <main>
+            <div>
+                <button onclick="displayDate()">The time is:</button>
+                <p id="demo"></p>
+            </div>
+
+            <!-- <form> -->
+            <input type="text" id="firstName" onchange="upperCase()" />
+            <!-- </form> -->
+
+            <div
+                onmousedown="mDown(this)"
+                onmouseup="mUp(this)"
+                style="
+                    background-color: red;
+                    width: 120px;
+                    height: 20px;
+                    padding: 40px;
+                "
+            >
+                Mouse Over me.
+            </div>
+        </main>
+
+        <script>
+            function changeText(id) {
+                id.innerHTML = "This is after click!";
+            }
+
+            function displayDate() {
+                document.getElementById("demo").innerHTML = new Date();
+            }
+
+            function upperCase() {
+                const x = document.getElementById("firstName");
+                x.value = x.value.toUpperCase();
+            }
+
+            function mOver(obj) {
+                obj.innerHTML = "Thank You";
+            }
+
+            function mOut(obj) {
+                obj.innerHTML = "Mouse Over me.";
+            }
+
+            function mDown(obj) {
+                obj.style.backgroundColor = "cyan";
+                obj.innerHTML = "Release Me";
+            }
+
+            function mUp(obj) {
+                obj.style.backgroundColor = "red";
+                obj.innerHTML = "Mouse Over me.";
+            }
+        </script>
+    </body>
+</html>
